@@ -1,0 +1,20 @@
+<h2>Players:</h2>
+<% if flash[:success] %>
+  <%= flash[:success] %><br><br>
+<% end %>
+<%= link_to "New Player", new_player_path %><br><br>
+
+<% if @players.length > 0 %>
+  <table border="1" cellpadding="2" width="550px" cellspacing="0">
+    <tr><td>Name:</td><td>Lifetime Wins:</td><td>Bracket Wins:</td><td>Lifetime Points:</td><td></td><td></td></tr>
+  <% @players.each do |player| %>
+    <tr>
+    <td><%= link_to "#{player.name}", player_path(player) %> </td><td><%= player.wins %> </td><td><%= player.bracket_wins %> </td><td><%= player.lifetime_points %></td><td> <center><%= link_to "Edit", edit_player_path(player) %> </center></td><td> <center><% if player.brackets == [] %><%= link_to "Delete", player, data: { confirm: "Are you sure?" }, method: :delete %><% else %>Delete<% end %></center></td>
+    </tr>
+  <% end %>
+  </table>
+<% else %>
+  You have no Players! Create one now...
+  <br>
+<% end %>
+<br>

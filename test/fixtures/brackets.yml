@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  player_list: MyText
+  winner_id: 
+
+two:
+  name: MyString
+  player_list: MyText
+  winner_id: 

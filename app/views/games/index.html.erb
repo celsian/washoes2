@@ -1,0 +1,43 @@
+<h2>Games</h2>
+<%= render "flash" %>
+<%= link_to "New Game", new_game_path %><br><br>
+<table border="1" cellpadding="2" width="300px" cellspacing="0">
+  <tr><td>Game</td><td>Players</td><td>Bracket</td><td></td></tr>
+<% @games.each do |game| %>
+  <tr>
+    <td>ID: <% if game.game_players.count == 2 %><%= link_to "#{game.id}", game_path(game) %><% else %><%= game.id %><% end %></td>
+    <td>
+      
+      <table border="0" cellpadding="0" width="150px" cellspacing="1">
+        
+        <% game.players.each do |player| %>
+          <tr>
+            <td>
+              <li><%= player.name %></li>
+            </td>
+            <td><% if !game.winner %>
+                  <%= form_for @game, url: set_winner_path do |f| %>
+                  <%= hidden_field_tag(:player, player.id) %>
+                  <%= hidden_field_tag(:game, game.id) %>
+                  <%= f.submit "W" %>
+                <% end %>
+            </td>
+          </tr>
+        <% end %>
+<% end %>
+          
+        <tr>
+          <td>
+                  <li>Winner: <% if game.winner %>
+                        <%= game.winner.name %>
+                      <% end %></li>
+          </td>
+        </tr>
+      </table>
+
+    </td>
+    <td><center><%= game.bracket.name %></center></td>
+    <td><center><%= link_to "Delete", game, data: { confirm: "Are you sure?" }, method: :delete %></center></td>
+  </tr>
+<% end %>
+</table>

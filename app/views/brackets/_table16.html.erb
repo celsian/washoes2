@@ -1,0 +1,74 @@
+<% if @bracket.games.count == 15 %>
+<center>
+  <table border=0>
+
+    <% 0.upto(6).each do |y| %>
+      <tr height=85>
+      <% 0.upto(6).each do |x| %>
+          <% if x == 3 && y == 0 %>
+            <td width = 125 align="center">
+              <h3><p class="border">Winner:<br>
+              <% if @bracket.winner %>
+                <span class="neon"><%= "#{@bracket.winner.name}!" %></span>
+              <% else %>
+                <%= "..." %>
+              <% end %></p></h3>
+
+          <% elsif x == 0 && y == 0 %>
+            <td width = 125><p class="border">
+              <%= render "games/game", game: @bracket.games[0], pos: "left", game_name: "Game 1:" %>
+          <% elsif x == 6 && y == 0 %>
+            <td width = 125 align="right"><p class="border">
+              <%= render "games/game", game: @bracket.games[4], pos: "right", game_name: "Game 5:" %>
+          <% elsif x == 1 && y == 1 %>
+            <td width = 125 align="right"><p class="border">
+              <%= render "games/game", game: @bracket.games[8], pos: "left", game_name: "Game 9:" %>
+          <% elsif x == 5 && y == 1 %>
+            <td width = 125 align="right"><p class="border">
+              <%= render "games/game", game: @bracket.games[10], pos: "right", game_name: "Game 11:" %>
+          <% elsif x == 0 && y == 2 %>
+            <td width = 125 align="right"><p class="border">
+              <%= render "games/game", game: @bracket.games[1], pos: "left", game_name: "Game 2:" %>
+          <% elsif x == 6 && y == 2 %>
+            <td width = 125 align="right"><p class="border">
+              <%= render "games/game", game: @bracket.games[5], pos: "right", game_name: "Game 6:" %>
+          <% elsif x == 2 && y == 3 %>
+            <td width = 125><p class="border">
+              <%= render "games/game", game: @bracket.games[12], pos: "left", game_name: "Semi Final:" %>
+          <% elsif x == 3 && y == 3 %>
+            <td width = 175 align="center">
+            <h3><p class="border">
+              <%= render "games/game", game: @bracket.games[14], pos: "left", game_name: "Final:" %>
+            </h3>
+          <% elsif x == 4 && y == 3 %>
+            <td width = 125 align="right"><p class="border">
+              <%= render "games/game", game: @bracket.games[13], pos: "right", game_name: "Semi Final:" %>
+          <% elsif x == 0 && y == 4 %>
+            <td width = 125 align="right"><p class="border">
+              <%= render "games/game", game: @bracket.games[2], pos: "right", game_name: "Game 3:" %>
+          <% elsif x == 6 && y == 4 %>
+            <td width = 125 align="right"><p class="border">
+              <%= render "games/game", game: @bracket.games[6], pos: "right", game_name: "Game 7:" %>
+          <% elsif x == 1 && y == 5 %>
+            <td width = 125><p class="border">
+              <%= render "games/game", game: @bracket.games[9], pos: "left", game_name: "Game 10:" %>
+          <% elsif x == 5 && y == 5 %>
+            <td width = 125 align="right"><p class="border">
+              <%= render "games/game", game: @bracket.games[11], pos: "right", game_name: "Game 12:" %>
+          <% elsif x == 0 && y == 6 %>
+            <td width = 125 align="right"><p class="border">
+              <%= render "games/game", game: @bracket.games[3], pos: "left", game_name: "Game 4:" %>
+          <% elsif x == 6 && y == 6 %>
+            <td width = 125 align="right"><p class="border">
+              <%= render "games/game", game: @bracket.games[7], pos: "right", game_name: "Game 8:" %>
+          <% else %>
+            <td width = 125>
+          <% end %>
+        </td>
+      <% end %>
+      </tr>
+    <% end %>
+
+  </table>
+</center>
+<% end %>

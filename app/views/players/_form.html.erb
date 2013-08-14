@@ -1,0 +1,15 @@
+<%= form_for @player do |f| %>
+
+<div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, autofocus: true %>
+</div>
+
+<div id="error_explanation">
+    <% if @player.errors.any? %>
+      <%= render "errors", object: f.object %>
+    <% end %>
+</div>
+
+  <%= f.submit class: 'btn btn-primary'  %>
+<% end %>

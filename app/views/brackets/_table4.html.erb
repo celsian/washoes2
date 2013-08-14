@@ -1,0 +1,38 @@
+<% if @bracket.games.count == 3 %>
+<center>
+  <table border=0>
+
+    <% 0.upto(1).each do |y| %>
+      <tr height=85>
+      <% 0.upto(2).each do |x| %>
+          <% if x == 1 && y == 0 %>
+            <td width = 125 align="center">
+              <h3><p class="border">Winner:<br>
+              <% if @bracket.winner %>
+                <span class="neon"><%= "#{@bracket.winner.name}!" %></span>
+              <% else %>
+                <%= "..." %>
+              <% end %></p></h3>
+
+          <% elsif x == 0 && y == 1 %>
+            <td width = 125><p class="border">
+              <%= render "games/game", game: @bracket.games[0], pos: "left", game_name: "Semi Final:" %>
+          <% elsif x == 1 && y == 1 %>
+            <td width = 175 align="center">
+            <h3><p class="border">
+              <%= render "games/game", game: @bracket.games[2], pos: "left", game_name: "Final:" %>
+            </h3>
+          <% elsif x == 2 && y == 1 %>
+            <td width = 125 align="right"><p class="border">
+              <%= render "games/game", game: @bracket.games[1], pos: "right", game_name: "Semi Final:" %>
+          <% else %>
+            <td width = 125>
+          <% end %>
+        </td>
+      <% end %>
+      </tr>
+    <% end %>
+
+  </table>
+</center>
+<% end %>

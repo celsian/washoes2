@@ -1,0 +1,50 @@
+<h3>Game ID: <%= "#{@game.id}" %></h3>
+<b>Points:</b>
+<table border="0" cellpadding="2" cellspacing="0  ">
+  <tr valign="top">
+    <td align="top">
+      <table border="1" cellpadding="2" cellspacing="0">
+        <% @game.game_players.each do |game_player| %>
+        <tr>
+          <td><%= game_player.player.name %>: </td>
+
+            <% if !@game.winner %>
+            <td>
+                  <%= form_for @game_form, as: :post, url: set_winner_path do |f| %>
+                  <%= hidden_field_tag(:player, game_player.player.id) %>
+                  <%= hidden_field_tag(:game, @game.id) %>
+                  <%= f.submit "W", :class => 'btn btn-primary'   %>
+                <% end %>
+            </td>
+            <% end %>
+            
+
+          <% game_player.points.each do |point| %>
+            <% if point.score %>
+              <td><center><%= point.score %></center></td>
+            <% end %>
+          <% end %>
+          <td>Total: <%= game_player.total %></td>
+        </tr>
+        <% end %>
+      </table>
+    </td>
+    <td>
+      <% if !@game.winner %>
+        <%= form_for @game do |f| %>
+          <%= text_field :points, :score1, autofocus: true, :autocomplete => :off %><br>
+          <%= text_field :points, :score2, :autocomplete => :off %><br>
+          <%= f.submit nil, :class => 'btn btn-primary' %>
+        <% end %>
+      <% end %>
+    </td>
+  </tr>
+</table>
+<br>
+<% if @game.winner %>
+  <b>Winner:</b>
+  <li><%= @game.winner ? "#{@game.winner.name}" : "" %> </li>
+  <br>
+<% end %>
+
+<%= link_to "Back to Bracket", bracket_path(@game.bracket) %>

@@ -1,0 +1,16 @@
+<%= form_for @game do |f| %>
+
+  
+
+  <div id="error_explanation">
+      <% if @game.errors.any? %>
+        <%= render "errors", object: f.object %>
+      <% end %>
+  </div>
+
+  <%= f.fields_for :game_players do |ff| %>
+    <%= ff.collection_select :player_id, Player.all, :id, :name %><br>
+  <% end %>
+
+  <%= f.submit nil, :class => 'btn btn-primary'   %>
+<% end %>

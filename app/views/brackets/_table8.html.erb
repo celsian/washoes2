@@ -1,0 +1,50 @@
+<% if @bracket.games.count == 7 %>
+<center>
+  <table border=0>
+
+    <% 0.upto(2).each do |y| %>
+      <tr height=85>
+      <% 0.upto(4).each do |x| %>
+          <% if x == 2 && y == 0 %>
+            <td width = 125 align="center">
+              <h3><p class="border">Winner:<br>
+              <% if @bracket.winner %>
+                <span class="neon"><%= "#{@bracket.winner.name}!" %></span>
+              <% else %>
+                <%= "..." %>
+              <% end %></p></h3>
+
+          <% elsif x == 0 && y == 0 %>
+            <td width = 125><p class="border">
+              <%= render "games/game", game: @bracket.games[0], pos: "left", game_name: "Game 1:" %>
+          <% elsif x == 4 && y == 0 %>
+            <td width = 125 align="right"><p class="border">
+              <%= render "games/game", game: @bracket.games[2], pos: "right", game_name: "Game 3:" %>
+          <% elsif x == 1 && y == 1 %>
+            <td width = 125><p class="border">
+              <%= render "games/game", game: @bracket.games[4], pos: "left", game_name: "Semi Final:" %>
+          <% elsif x == 2 && y == 1 %>
+            <td width = 175 align="center">
+            <h3><p class="border">
+              <%= render "games/game", game: @bracket.games[6], pos: "left", game_name: "Final:" %>
+            </h3>
+          <% elsif x == 3 && y == 1 %>
+            <td width = 125 align="right"><p class="border">
+              <%= render "games/game", game: @bracket.games[5], pos: "right", game_name: "Semi Final:" %>
+          <% elsif x == 0 && y == 2 %>
+            <td width = 125><p class="border">
+              <%= render "games/game", game: @bracket.games[1], pos: "left", game_name: "Game 2:" %>
+          <% elsif x == 4 && y == 2 %>
+            <td width = 125 align="right"><p class="border">
+              <%= render "games/game", game: @bracket.games[3], pos: "right", game_name: "Game 4:" %>
+          <% else %>
+            <td width = 125>
+          <% end %>
+        </td>
+      <% end %>
+      </tr>
+    <% end %>
+
+  </table>
+</center>
+<% end %>

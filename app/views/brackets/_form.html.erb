@@ -1,0 +1,23 @@
+<%= form_for @bracket do |f| %>
+
+<div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, autofocus: true %>
+</div>
+
+<BR><U><B>Select Players:</B></U></br>
+
+
+<% @players.each do |player| %>
+  <%= check_box_tag "game_players[#{player.id}]" %> <%= player.name %><br>
+<% end %>
+
+<br>
+<div id="error_explanation">
+    <% if @bracket.errors.any? %>
+      <%= render "errors", object: f.object %>
+    <% end %>
+</div>
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+<% end %>

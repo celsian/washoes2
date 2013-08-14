@@ -1,0 +1,38 @@
+<% pos = pos %>
+<% game_name = game_name %>
+
+<% if game.game_players.first.player_id && game.game_players.last.player_id %>
+  <%= link_to "#{game_name}", game %>
+<% else %>
+  <%= game_name %>
+<% end %>
+<br>  
+<% if game.game_players.first.player_id %>
+  <% if !game.winner %>
+  <!-- do nothing -->
+  <% elsif game.winner == game.game_players.first.player %>
+    <b>
+  <% elsif game.winner == game.game_players.last.player %>
+    <span class="loser">
+  <% end %>
+  <%= game.game_players.first.player.name %> <%= "(#{game.game_players.first.player.bracket_points(game.bracket)})" %></span></b>
+<% else %>
+  <%= "??? (?)" %>
+<% end %>
+
+<% if pos == "left" %>
+<%= "vs." %><br>
+<% else %>
+<br><%= "vs." %>
+<% end %>
+
+<% if game.game_players.last.player_id %>
+  <% if game.winner == game.game_players.last.player %>
+    <b>
+  <% elsif game.winner == game.game_players.first.player %>
+    <span class="loser">
+  <% end %>
+  <%= game.game_players.last.player.name %> <%= "(#{game.game_players.last.player.bracket_points(game.bracket)})" %><span class="white"><%= "." %></span></b>
+<% else %>
+  <%= "??? (?)" %><span class="white"><%= "." %></font>
+<% end %> 

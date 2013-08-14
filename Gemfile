@@ -3,6 +3,9 @@ source 'https://rubygems.org'
 gem 'bootstrap_helper'
 
 gem 'devise'
+
+gem "therubyracer"
+gem "less-rails"
 gem "twitter-bootstrap-rails"
 
 gem 'pry-rails'

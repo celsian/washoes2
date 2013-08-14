@@ -1,12 +1,9 @@
 source 'https://rubygems.org'
 
-gem 'bootstrap_helper'
-
 gem 'devise'
-
-gem "therubyracer"
-gem "less-rails"
 gem "twitter-bootstrap-rails"
+
+gem 'rails_12factor', group: :production
 
 gem 'pry-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -16,7 +13,7 @@ gem 'rails', '4.0.0'
 # gem 'sqlite3'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0.rc1'
+gem 'sass-rails', '~> 4.0.0.rc2'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

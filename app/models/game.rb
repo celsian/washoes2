@@ -7,6 +7,8 @@ class Game < ActiveRecord::Base
 
   accepts_nested_attributes_for :game_players
 
+  default_scope order(:id)
+
   def set_winner(player)
     self.winner = player
     if self.save

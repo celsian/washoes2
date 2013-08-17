@@ -6,7 +6,7 @@
       <table border="1" cellpadding="2" cellspacing="0">
         <% @game.game_players.each do |game_player| %>
         <tr>
-          <td><%= game_player.player.name %>: </td>
+          <td><%= game_player.player.name %> <font size=1px>(<%= game_player.player.bracket_points(game_player.bracket) %>):</font> </td>
 
             <% if !@game.winner %>
             <td>
